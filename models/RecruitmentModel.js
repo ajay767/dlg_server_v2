@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const recruitmentSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'please enter your name'],
+    required: [true, "please enter your name"],
   },
   accepted: {
     type: Boolean,
@@ -16,42 +16,42 @@ const recruitmentSchema = new mongoose.Schema({
   email: {
     type: String,
     unique: true,
-    required: [true, 'please enter your email.'],
+    required: [true, "please enter your email."],
   },
   mobile: {
     type: Number,
-    required: [true, 'please enter your mobile no.'],
+    required: [true, "please enter your mobile no."],
   },
   gender: {
     type: String,
-    required: [true, 'please enter your gender.'],
+    required: [true, "please enter your gender."],
   },
   year: {
     type: Number,
-    required: [true, 'please enter your academic year'],
+    required: [true, "please enter your academic year"],
   },
   enrollment: {
     type: String,
     unique: true,
-    required: [true, 'please enter your enrollment no.'],
+    required: [true, "please enter your enrollment no."],
   },
   branch: {
     type: String,
-    required: [true, 'please enter your branch name.'],
+    required: [true, "please enter your branch name."],
   },
   skills: {
     type: String,
-    default: 'No skill set provided!',
+    default: "No skill set provided!",
   },
   why: {
     type: String,
-    required: [true, 'please write why you want to join DLG?.'],
+    required: [true, "please write why you want to join DLG?."],
   },
   domain: {
     type: [String],
-    required: [true, 'please choose your domain.'],
+    required: [true, "please choose your domain."],
   },
 });
 
-const Recruitment = mongoose.model('Recruitment', recruitmentSchema);
+const Recruitment = mongoose.model("Recruitment", recruitmentSchema);
 module.exports = Recruitment;
