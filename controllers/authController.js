@@ -78,3 +78,13 @@ exports.protect = async (req, res, next) => {
     next(err);
   }
 };
+exports.getuser = async (req, res, next) => {
+  try {
+    const { user } = req;
+    res.status(200).json({
+      user,
+    });
+  } catch (err) {
+    next(err);
+  }
+};

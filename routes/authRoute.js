@@ -8,4 +8,5 @@ router.post("/signup", authController.signup);
 router.post("/login", authController.login);
 router.post("/generateCaptcha", captchaController.generateCaptcha);
 router.get("/getAllCaptcha", captchaController.getAll);
+router.get("/getcurrentuser", authController.protect, authController.getuser);
 module.exports = router;

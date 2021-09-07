@@ -35,9 +35,7 @@ app.use(cors());
 app.options("*", cors());
 
 // Development logging
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
-}
+app.use(morgan("dev"));
 
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
