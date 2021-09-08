@@ -48,7 +48,7 @@ exports.login = async (req, res, next) => {
     const user = await User.findOne({
       email,
     });
-    console.log(user);
+
     if (!user || !(await user.correctPassword(password, user.password))) {
       return next(new AppError('Invalid Email or Password'), 400);
     }
@@ -70,7 +70,7 @@ exports.protect = async (req, res, next) => {
     if (!token) {
       return next(new AppError('You are not logged in !', 400));
     }
-    console.log('token  = ', token);
+
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
     const user = await User.findOne({ _id: decoded.id });
     user.password = undefined;
