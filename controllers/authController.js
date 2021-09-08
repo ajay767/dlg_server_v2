@@ -66,12 +66,14 @@ exports.login = async (req, res, next) => {
 exports.protect = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
+    console.log(token);
     if (!token) {
       return next(new AppError("You are not logged in !", 400));
     }
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
     const user = await User.findOne({ _id: decoded.id });
     user.password = undefined;
+    user.passwordConfirm = undefined;
     req.user = user;
     next();
   } catch (err) {
@@ -81,6 +83,22 @@ exports.protect = async (req, res, next) => {
 exports.getuser = async (req, res, next) => {
   try {
     const { user } = req;
+    res.status(200).json({
+      user,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+exports.updateuser = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findByIdAndUpdate(id, req.body, {
+      runValidators: false,
+      new: true,
+    });
+    user.password = undefined;
+    user.confirmPassword = undefined;
     res.status(200).json({
       user,
     });
