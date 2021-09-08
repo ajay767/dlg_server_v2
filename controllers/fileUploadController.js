@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
       const params = {
         Bucket: process.env.AWS_BUCKET,
         Key: req.file.originalname,
-        Body: req.file.path,
+        Body: req.file.buffer,
       };
 
       AWS_CONFIG.upload(params, (err, data) => {
@@ -34,6 +34,7 @@ module.exports = async (req, res, next) => {
     }
 
     const result = await cloudinary.uploader.upload(req.file.path);
+
     res.status(201).json({
       status: 'success',
       url: result.secure_url,
