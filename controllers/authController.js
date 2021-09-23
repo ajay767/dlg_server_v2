@@ -92,6 +92,7 @@ exports.getuser = async (req, res, next) => {
     next(err);
   }
 };
+
 exports.updateuser = async (req, res, next) => {
   try {
     const { id } = req.params;
