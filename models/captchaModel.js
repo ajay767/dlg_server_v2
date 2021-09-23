@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const captchaSchema = new mongoose.Schema({
   value: {
@@ -7,10 +7,10 @@ const captchaSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    expires: "3m",
+    expires: '1800',
     default: Date.now,
   },
 });
 
-const Captcha = mongoose.model("Captcha", captchaSchema);
+const Captcha = mongoose.model('Captcha', captchaSchema);
 module.exports = Captcha;

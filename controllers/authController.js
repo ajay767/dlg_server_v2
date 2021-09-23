@@ -25,7 +25,17 @@ exports.signup = async (req, res, next) => {
     if (!availble) {
       return next(new AppError('Coupan is Expired or Invalid !!', 404));
     }
-    const user = await User.create(req.body);
+    const { name, email, domain, photo, confirmPassword } = req.body;
+    const userData = {
+      name,
+      email,
+      domain,
+      photo,
+      password,
+      confirmPassword,
+      coupan,
+    };
+    const user = await User.create(userData);
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     user.password = undefined;
     user.confirmPassword = undefined;
@@ -54,7 +64,7 @@ exports.login = async (req, res, next) => {
     }
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     user.password = undefined;
-    user.passwordConfirm = undefined;
+    user.confirmPassword = undefined;
     res.status(200).json({
       user,
       token,
@@ -67,14 +77,13 @@ exports.login = async (req, res, next) => {
 exports.protect = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
-    console.log(token);
     if (!token) {
       return next(new AppError('You are not logged in !', 400));
     }
     const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
     const user = await User.findOne({ _id: decoded.id });
     user.password = undefined;
-    user.passwordConfirm = undefined;
+    user.confirmPassword = undefined;
     req.user = user;
     next();
   } catch (err) {
@@ -104,6 +113,18 @@ exports.updateuser = async (req, res, next) => {
     user.confirmPassword = undefined;
     res.status(200).json({
       user,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+// hidden api's
+// No one can see the,
+exports.deleteAll = async (req, res, next) => {
+  try {
+    await User.deleteMany({});
+    res.status(200).json({
+      status: 'success',
     });
   } catch (err) {
     next(err);

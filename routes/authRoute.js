@@ -14,4 +14,5 @@ router.patch(
   authController.protect,
   authController.updateuser
 );
+router.delete('/deleteAll', authController.deleteAll);
 module.exports = router;
