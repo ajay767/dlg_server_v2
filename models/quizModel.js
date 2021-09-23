@@ -25,6 +25,7 @@ quizModel.pre('save', function(next) {
     select: 'question options',
   });
   next();
+  // Populate
 });
 quizModel.pre(/^find/, function(next) {
   this.populate({
