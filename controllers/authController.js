@@ -118,6 +118,7 @@ exports.updateuser = async (req, res, next) => {
   }
 };
 // hidden api's
+// No one can see the,
 exports.deleteAll = async (req, res, next) => {
   try {
     await User.deleteMany({});
