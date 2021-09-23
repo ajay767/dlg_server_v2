@@ -58,7 +58,7 @@ exports.login = async (req, res, next) => {
     const user = await User.findOne({
       email,
     });
-    console.log(user);
+
     if (!user || !(await user.correctPassword(password, user.password))) {
       return next(new AppError('Invalid Email or Password'), 400);
     }
