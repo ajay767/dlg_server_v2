@@ -18,8 +18,8 @@ const questionModel = new mongoose.Schema({
       },
     ],
     validate: {
-      validator: (v) => Array.isArray(v) && v.length === 4,
-      message: 'A Quiz must have atleast 4 options',
+      validator: (v) => Array.isArray(v) && v.length >= 2,
+      message: 'A Quiz must have atleast 2 options',
     },
   },
 });

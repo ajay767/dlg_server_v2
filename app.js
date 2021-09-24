@@ -49,9 +49,9 @@ app.use('/api/v1/events', eventRouter);
 app.use('/api/v1/academics', academicsRoute);
 app.use('/api/v1/send-notice', sendEmailNoticeRoute);
 app.use('/api/v1/event-booking', eventBookingRoute);
+app.use('/api/v1/test', testRoute);
 app.use('/api/v2/upload', fileUploadRoute);
 app.use('/api/v2/blog', blogRouter);
-app.use('/api/v1/test', testRoute);
 app.use('/api/v2/quiz', quizRoute);
 
 app.all('*', (req, res, next) => {

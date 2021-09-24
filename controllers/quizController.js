@@ -3,11 +3,26 @@ const Quiz = require('../models/quizModel');
 
 exports.createQuiz = async (req, res, next) => {
   try {
-    const { title, questions } = req.body;
+    const {
+      title,
+      questions,
+      description,
+      startAt,
+      endAt,
+      duration,
+    } = req.body;
+
+    console.log(req.body);
+
     const quiz = await Quiz.create({
       title,
       questions,
+      description,
+      startAt,
+      endAt,
+      duration,
     });
+
     res.status(201).json({
       status: 'OK',
       quiz,
@@ -43,7 +58,7 @@ exports.getQuiz = async (req, res, next) => {
 exports.getLatestQuiz = async (req, res, next) => {
   try {
     const quiz = await Quiz.find().sort('-createdAt');
-    const latestQuiz = quiz[0];
+    const latestQuiz = quiz.length ? quiz[0] : { status: 'not found' };
     res.status(200).json({
       status: 'ok',
       quiz: latestQuiz,

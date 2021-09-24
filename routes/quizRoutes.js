@@ -9,6 +9,7 @@ router.post(
   authController.protect,
   questionController.createQuestion
 );
+
 router.get('/get-all-questions', questionController.getAllQuestions);
 router.delete('/delete-all-questions', questionController.deleteAllQuestions);
 router.delete(
@@ -20,6 +21,6 @@ router.delete(
 router.post('/create-quiz', authController.protect, quizController.createQuiz);
 router.get('/get-all-quiz', quizController.getAllQuiz);
 router.get('/get-quiz/:id', quizController.getQuiz);
-router.get('/get-latest-quiz/', quizController.getLatestQuiz);
+router.get('/get-latest-quiz', quizController.getLatestQuiz);
 router.delete('/delete-all-quiz', quizController.deleteAllQuiz);
 module.exports = router;

@@ -4,12 +4,15 @@ const Question = require('../models/questionModel');
 exports.createQuestion = async (req, res, next) => {
   try {
     let { question, options } = req.body;
+
     let correctOptionPresent = false;
+
     options.forEach((option) => {
       if (option.correct === true) {
         correctOptionPresent = true;
       }
     });
+
     if (!correctOptionPresent) {
       return next(
         new AppError('Please Provide atleast one correct option', 400)
