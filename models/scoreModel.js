@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 
 const scoreSchema = new mongoose.Schema(
   {
@@ -9,6 +10,12 @@ const scoreSchema = new mongoose.Schema(
     email: {
       type: String,
       required: [true, 'Please Provide a Valid Email'],
+      validate: {
+        validator: (email) => {
+          return validator.isEmail(email);
+        },
+        message: 'Email is not valid!',
+      },
     },
     score: {
       type: Number,
