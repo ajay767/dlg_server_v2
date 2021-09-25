@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const scoreModel = new mongoose.Schema(
+const scoreSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -29,7 +29,8 @@ const scoreModel = new mongoose.Schema(
   }
 );
 
-// scoreModel.index({ name: 1, email: 1 }, { unique: true });
+scoreSchema.index({ quiz: 1, email: 1 }, { unique: true });
 
-const Score = mongoose.model('Score', scoreModel);
+const Score = mongoose.model('Score', scoreSchema);
+
 module.exports = Score;

@@ -1,6 +1,5 @@
 const express = require('express');
 const morgan = require('morgan');
-const json2xls = require('json2xls');
 const AppError = require('./utils/appError');
 const mongoSanitize = require('express-mongo-sanitize');
 const globarErrorHandler = require('./controllers/globalErrorHandler');

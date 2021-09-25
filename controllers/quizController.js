@@ -1,6 +1,6 @@
 const AppError = require('../utils/appError');
 const Quiz = require('../models/quizModel');
-const Score = require('../models/scoleModel');
+const Score = require('../models/scoreModel');
 const mongoose = require('mongoose');
 
 exports.createQuiz = async (req, res, next) => {
