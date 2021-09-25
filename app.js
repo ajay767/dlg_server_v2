@@ -7,6 +7,7 @@ const globarErrorHandler = require('./controllers/globalErrorHandler');
 const cors = require('cors');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
+const json2xls = require('json2xls');
 
 const askQueryRouter = require('./routes/askQueryRoute');
 const eventBookingRoute = require('./routes/eventBookingRoute');
@@ -42,7 +43,7 @@ app.use(morgan('dev'));
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
 
-//xls middleware
+// Excel
 app.use(json2xls.middleware);
 
 //routes
