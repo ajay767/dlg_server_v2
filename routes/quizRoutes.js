@@ -2,6 +2,7 @@ const express = require('express');
 const questionController = require('../controllers/questionController');
 const authController = require('../controllers/authController');
 const quizController = require('../controllers/quizController');
+const scoreController = require('../controllers/scoreController');
 const router = express.Router();
 
 router.post(
@@ -23,4 +24,7 @@ router.get('/get-all-quiz', quizController.getAllQuiz);
 router.get('/get-quiz/:id', quizController.getQuiz);
 router.get('/get-latest-quiz', quizController.getLatestQuiz);
 router.delete('/delete-all-quiz', quizController.deleteAllQuiz);
+
+router.post('/create-score', scoreController.createScore);
+router.get('/send-quiz-score/:id', scoreController.sendQuizScore);
 module.exports = router;
