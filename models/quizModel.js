@@ -26,7 +26,7 @@ const quizModel = new mongoose.Schema(
       type: [mongoose.Schema.ObjectId],
       ref: 'Question',
       validate: {
-        validator: (v) => Array.isArray(v) && v.length > 4,
+        validator: (v) => Array.isArray(v) && v.length >= 4,
         message: 'A Quiz Must have 4  questions',
       },
     },
