@@ -23,4 +23,5 @@ router.get('/get-all-quiz', quizController.getAllQuiz);
 router.get('/get-quiz/:id', quizController.getQuiz);
 router.get('/get-latest-quiz', quizController.getLatestQuiz);
 router.delete('/delete-all-quiz', quizController.deleteAllQuiz);
+router.get('/get-quiz-result', quizController.getQuizResult);
 module.exports = router;

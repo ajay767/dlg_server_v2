@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const json2xls = require('json2xls');
 const AppError = require('./utils/appError');
 const mongoSanitize = require('express-mongo-sanitize');
 const globarErrorHandler = require('./controllers/globalErrorHandler');
@@ -40,6 +41,9 @@ app.use(morgan('dev'));
 
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
+
+//xls middleware
+app.use(json2xls.middleware);
 
 //routes
 app.use('/api/v1/user', authRouter);
